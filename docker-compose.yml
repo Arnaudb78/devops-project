@@ -1,0 +1,50 @@
+version: "3.8"
+
+services:
+    backend:
+        image: node:18-alpine
+        ports:
+            - "3000:3000"
+        environment:
+            - DATABASE_HOST=postgres
+            - DATABASE_PORT=5432
+            - DATABASE_USER=postgres
+            - DATABASE_PASSWORD=postgres
+            - DATABASE_NAME=nestjs_db
+        depends_on:
+            - postgres
+        volumes:
+            - ./backend:/usr/src/app
+            - /usr/src/app/node_modules
+        command: >
+            sh -c "
+            if [ ! -f /usr/src/app/package.json ]; then
+                npm install -g pnpm @nestjs/cli &&
+                cd /usr/src/app &&
+                nest new . --package-manager pnpm --skip-git &&
+                pnpm install
+            fi &&
+            cd /usr/src/app &&
+            pnpm run start:dev
+            "
+
+    postgres:
+        image: postgres:16
+        ports:
+            - "5432:5432"
+        environment:
+            - POSTGRES_USER=postgres
+            - POSTGRES_PASSWORD=postgres
+            - POSTGRES_DB=nestjs_db
+        volumes:
+            - postgres_data:/var/lib/postgresql/data
+
+    adminer:
+        image: adminer:latest
+        ports:
+            - "8080:8080"
+        depends_on:
+            - postgres
+
+volumes:
+    postgres_data:
