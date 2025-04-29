@@ -2,7 +2,9 @@ version: "3.8"
 
 services:
     backend:
-        image: node:18-alpine
+        build:
+            context: ./backend
+            dockerfile: Dockerfile
         ports:
             - "3000:3000"
         environment:
@@ -14,19 +16,9 @@ services:
         depends_on:
             - postgres
         volumes:
-            - ./backend:/usr/src/app
-            - /usr/src/app/node_modules
-        command: >
-            sh -c "
-            if [ ! -f /usr/src/app/package.json ]; then
-                npm install -g pnpm @nestjs/cli &&
-                cd /usr/src/app &&
-                nest new . --package-manager pnpm --skip-git &&
-                pnpm install
-            fi &&
-            cd /usr/src/app &&
-            pnpm run start:dev
-            "
+            - ./backend:/app
+            - /app/node_modules
+        command: pnpm start:dev
 
     postgres:
         image: postgres:16
