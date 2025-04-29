@@ -5,18 +5,13 @@ services:
             dockerfile: Dockerfile
         ports:
             - "3000:3000"
-        environment:
-            - DATABASE_HOST=postgres
-            - DATABASE_PORT=5432
-            - DATABASE_USER=postgres
-            - DATABASE_PASSWORD=postgres
-            - DATABASE_NAME=nestjs_db
         depends_on:
             - postgres
         volumes:
             - ./backend:/app
             - /app/node_modules
         command: pnpm start:dev
+        entrypoint: ["/docker-entrypoint.sh"]
 
     postgres:
         image: postgres:16
