@@ -12,6 +12,7 @@ jobs:
               run: |
                   cd backend
                   npm install
+                  echo "Installing dependencies..."
             - name: Run tests with coverage
               run: |
                   cd backend
