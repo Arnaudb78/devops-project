@@ -9,6 +9,16 @@ export class DriversService {
   constructor(private prisma: PrismaService) {}
 
   async create(createDriverDto: CreateDriverDto) {
+    const existingDriver = await this.prisma.driver.findFirst({
+      where: {
+        email: createDriverDto.email,
+      },
+    });
+  
+    if (existingDriver) {
+      throw new Error('Un pilote avec cet email existe déjà');
+    }
+  
     return this.prisma.driver.create({
       data: createDriverDto,
     });
@@ -31,6 +41,9 @@ export class DriversService {
   }
 
   async update(id: number, updateDriverDto: UpdateDriverDto) {
+    if (Object.keys(updateDriverDto).length === 0) {
+      throw new Error('Aucune donnée fournie pour la mise à jour');
+    }    
     try {
       return await this.prisma.driver.update({
         where: { id },
@@ -62,4 +75,20 @@ export class DriversService {
       throw error;
     }
   }
+
+  async findByName(name: string) {
+    if (!name || name.trim().length < 2) {
+      throw new Error('Le nom à rechercher doit contenir au moins 2 caractères');
+    }
+
+    const drivers = await this.prisma.driver.findMany({
+      where: { name: { contains: name, mode: 'insensitive' } },
+    });
+    if (!drivers.length) {
+      throw new NotFoundException(`Aucun pilote trouvé avec le nom : ${name}`);
+    }
+    
+    return drivers;
+  }
+  
 }

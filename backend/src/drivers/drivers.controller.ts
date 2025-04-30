@@ -6,6 +6,7 @@ import {
   Patch,
   Param,
   Delete,
+  Query,
   ParseIntPipe,
 } from '@nestjs/common';
 import { DriversService } from './drivers.service';
@@ -24,6 +25,11 @@ export class DriversController {
   @Get()
   findAll() {
     return this.driversService.findAll();
+  }
+
+  @Get('search')
+  findByName(@Query('name') name: string) {
+    return this.driversService.findByName(name);
   }
 
   @Get(':id')
