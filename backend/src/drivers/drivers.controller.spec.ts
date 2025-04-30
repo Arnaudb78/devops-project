@@ -61,6 +61,19 @@ describe('DriversController', () => {
       expect(await controller.create(createDriverDto)).toBe(expectedResult);
       expect(service.create).toHaveBeenCalledWith(createDriverDto);
     });
+
+    it('should throw an error if driver with same email exists', async () => {
+      const createDriverDto: CreateDriverDto = {
+        name: 'John Duplicate',
+        licenseNumber: 'XYZ123',
+        phoneNumber: '987654321',
+        email: 'john.doe@example.com',
+      };
+    
+      jest.spyOn(service, 'create').mockRejectedValue(new Error('Un pilote avec cet email existe déjà'));
+    
+      await expect(controller.create(createDriverDto)).rejects.toThrow('Un pilote avec cet email existe déjà');
+    });    
   });
 
   describe('findAll', () => {
@@ -126,6 +139,12 @@ describe('DriversController', () => {
       expect(await controller.update(1, updateDriverDto)).toBe(expectedResult);
       expect(service.update).toHaveBeenCalledWith(1, updateDriverDto);
     });
+
+    it('should throw an error if update DTO is empty', async () => {
+      jest.spyOn(service, 'update').mockRejectedValue(new Error('Aucune donnée fournie pour la mise à jour'));
+    
+      await expect(controller.update(1, {})).rejects.toThrow('Aucune donnée fournie pour la mise à jour');
+    });
   });
 
   describe('remove', () => {
@@ -147,4 +166,33 @@ describe('DriversController', () => {
       expect(service.remove).toHaveBeenCalledWith(1);
     });
   });
+
+  describe('findByName', () => {
+    it('should call service.findByName with the provided name', async () => {
+      const name = 'John';
+      const expectedResult = [
+        {
+          id: 1,
+          name: 'John Doe',
+          licenseNumber: 'ABC123',
+          phoneNumber: '123456789',
+          email: 'john.doe@example.com',
+          active: true,
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
+      ];
+  
+      jest.spyOn(service, 'findByName').mockResolvedValue(expectedResult as any);
+  
+      expect(await controller.findByName(name)).toBe(expectedResult);
+      expect(service.findByName).toHaveBeenCalledWith(name);
+    });
+
+    it('should throw an error if name is too short', async () => {
+      jest.spyOn(service, 'findByName').mockRejectedValue(new Error('Le nom à rechercher doit contenir au moins 2 caractères'));
+    
+      await expect(controller.findByName('')).rejects.toThrow('Le nom à rechercher doit contenir au moins 2 caractères');
+    });    
+  });  
 });
