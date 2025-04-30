@@ -6,27 +6,25 @@ Bienvenue sur notre projet de développement et d'intégration DevOps autour de 
 
 ## 🎯 Objectif du projet
 
-Ce projet vise à récupérer des données liées à la Formule 1 (pilotes, équipes, circuits, etc.) depuis une API externe (https://openf1.org/), les stocker en base de données, et fournir un accès back-end à ces données.
-
-Le focus est mis sur la mise en place des pratiques DevOps modernes (CI/CD, containerisation, monitoring, logging).
+Ce projet vise à fournir un back-end structuré pour gérer des données liées à la Formule 1 (pilotes, utilisateurs…), tout en mettant en œuvre des pratiques DevOps modernes comme l'intégration continue, les tests automatisés, la containerisation et la supervision.
 
 ## 📊 Technologies utilisées
 
 ### Backend
 
--   **NestJS** (framework Node.js backend moderne)
--   **TypeScript**
--   **Jest** (tests unitaires)
--   **PostgreSQL** (base de données relationnelle)
+- **NestJS** (framework Node.js backend moderne)
+- **TypeScript**
+- **Jest** (tests unitaires)
+- **PostgreSQL** (base de données relationnelle)
 
 ### DevOps
 
--   **Docker** (containerisation de l'application)
--   **docker-compose** (orchestration de services)
--   **GitHub Actions** (CI/CD)
--   **Prometheus** (monitoring des métriques)
--   **Loki** + **Promtail** (centralisation des logs)
--   **Grafana** (visualisation des métriques et logs)
+- **Docker** (containerisation de l'application)
+- **docker-compose** (orchestration de services)
+- **GitHub Actions** (CI/CD)
+- **Prometheus** (monitoring des métriques)
+- **Loki** + **Promtail** (centralisation des logs)
+- **Grafana** (visualisation des métriques et logs)
 
 ## 📚 Comment installer et lancer le projet
 
@@ -41,6 +39,8 @@ git clone https://github.com/Arnaudb78/devops-project.git
 ```bash
 npm install -g pnpm@latest-10
 ```
+
+### 3. Installer les dépendances et générer Prisma
 
 ### 3. Installer les dépendances et générer Prisma
 
@@ -94,13 +94,21 @@ pnpm run test
 pnpm run test:cov
 ```
 
+## ⚙️ Workflows GitHub Actions
+
+| Workflow            | Fichier          | Description                                                                 |
+| ------------------- | ---------------- | --------------------------------------------------------------------------- |
+| **Tests unitaires** | `test.yml`       | Exécute `pnpm run test` à chaque push ou PR                                 |
+| **Couverture**      | `coverage.yml`   | Exécute `pnpm run test:cov` et téléverse le rapport de couverture           |
+| **Message PR**      | `pr-congrat.yml` | Envoie un message de félicitations automatique lors de l'ouverture d'une PR |
+
 ## 🔗 Liens utiles
 
--   [API OpenF1](https://openf1.org/)
--   [NestJS Documentation](https://docs.nestjs.com/)
--   [Docker Documentation](https://docs.docker.com/)
--   [Prometheus Documentation](https://prometheus.io/docs/)
--   [Grafana Documentation](https://grafana.com/docs/)
+- [API OpenF1](https://openf1.org/)
+- [NestJS Documentation](https://docs.nestjs.com/)
+- [Docker Documentation](https://docs.docker.com/)
+- [Prometheus Documentation](https://prometheus.io/docs/)
+- [Grafana Documentation](https://grafana.com/docs/)
 
 ## Crédit
 
