@@ -34,20 +34,26 @@ Le focus est mis sur la mise en place des pratiques DevOps modernes (CI/CD, cont
 git clone https://github.com/Arnaudb78/devops-project.git
 ```
 
-### 2. Installer pnpm (si vous ne l'avez pas)
+### 2. Installer pnpm (optionnel)
 
 ```bash
 npm install -g pnpm@latest-10
 ```
 
-### 3. Installer les dépendances
+### 3. Installer les dépendances et générer Prisma  
 
 ```bash
 cd backend/
 pnpm install
+pnpm prisma generate
+```
+### 4. Copier les variables d'environnement
+
+```bash
+cp .env.example .env
 ```
 
-### 4. Lancer l'application
+### 5. Lancer l'application
 
 Revenir à la racine du projet, puis lancer tous les services avec Docker Compose :
 
@@ -56,10 +62,34 @@ cd ..
 docker compose up --build
 ```
 
-### 5. Arrêter les services
+### 6. Arrêter les services
 
 ```bash
 docker compose down
+```
+
+
+## 🧪 Tester
+
+### Ajouter un driver (connexion à la DB)
+
+```bash
+curl -X POST http://localhost:3000/drivers \
+  -H "Content-Type: application/json" \
+  -d '{"name": "John Driver", "licenseNumber": "ABC123", "phoneNumber": "1234567890", "email": "john@example.com"}'
+```
+
+### Récupérer tous les drivers
+
+```bash
+curl http://localhost:3000/drivers
+```
+
+### Lancer les tests
+
+```bash
+pnpm run test
+pnpm run test:cov
 ```
 
 
@@ -72,5 +102,3 @@ docker compose down
 
 ## Crédit
 Projet créé par Arnaud Beaulieu, Manal Suliman et Elena Ferreira
-
-
