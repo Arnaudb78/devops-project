@@ -1,0 +1,71 @@
+name: Badge Coverage
+
+on:
+    push:
+        branches: [master]
+    pull_request:
+        branches: [master]
+
+permissions:
+    contents: write
+
+jobs:
+    badge-coverage:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v3
+
+            - name: Install dependencies
+              run: |
+                  cd backend
+                  npm install
+
+            - name: Run tests with coverage
+              run: |
+                  cd backend
+                  npm run test:cov
+
+            - name: Check coverage threshold
+              run: |
+                  cd backend
+                  # Extract coverage percentage
+                  COVERAGE=$(grep -o '<span class="strong">[0-9.]*%' coverage/lcov-report/index.html | head -1 | grep -o '[0-9.]*')
+                  echo "Current coverage: $COVERAGE%"
+                  echo "COVERAGE=$COVERAGE" >> $GITHUB_ENV
+
+                  # Check if coverage is below threshold
+                  if (( $(echo "$COVERAGE < 70" | bc -l) )); then
+                    echo "::error::Code coverage ($COVERAGE%) is below the required threshold (70%) 🚨"
+                    exit 1
+                  fi
+                  echo "Coverage check passed ✅"
+
+            - name: Generate coverage badge
+              if: github.event_name == 'push'
+              run: |
+                  cd backend
+                  # Create badges directory if it doesn't exist
+                  mkdir -p badges
+
+                  # Create the badge
+                  curl -o badges/coverage.svg "https://img.shields.io/badge/coverage-$COVERAGE%25-$(if (( $(echo "$COVERAGE >= 80" | bc -l) )); then echo 'brightgreen'; elif (( $(echo "$COVERAGE >= 70" | bc -l) )); then echo 'yellow'; else echo 'red'; fi)"
+
+            - name: Upload coverage report
+              uses: actions/upload-artifact@v4
+              with:
+                  name: coverage
+                  path: backend/coverage
+
+            - name: Commit badge
+              if: github.event_name == 'push'
+              run: |
+                  git config --local user.email "action@github.com"
+                  git config --local user.name "GitHub Action"
+                  git add backend/badges/coverage.svg
+                  git commit -m "Update coverage badge" || echo "No changes to commit"
+                  git push origin master
+
+            - name: Finish
+              run: |
+                  echo "Coverage badge updated successfully 🚀"
