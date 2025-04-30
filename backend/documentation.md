@@ -1,12 +1,12 @@
 # Documentation Technique – App Formule 1
 
-📅 **05.05.2025**  
-👥 **M1 TL**  
-👨‍💻 Arnaud Beaulieu, Elena Ferreira, Manal Suliman Ahmed
+ **05.05.2025**  
+ **M1 TL**  
+ Arnaud Beaulieu, Elena Ferreira, Manal Suliman Ahmed
 
 ---
 
-## 🧾 Introduction
+##  Introduction
 
 ### 🔹 Description du projet
 
@@ -15,7 +15,7 @@ Cette application représente une API backend RESTful dédiée à l’univers de
 
 ---
 
-## 🎯 Objectifs
+##  Objectifs
 
 - Créer une API claire, modulaire et évolutive.  
 - Centraliser les données F1 accessibles via un client externe (front-end ou mobile).  
@@ -23,7 +23,7 @@ Cette application représente une API backend RESTful dédiée à l’univers de
 
 ---
 
-## 🌍 Contexte
+##  Contexte
 
 La Formule 1 attire des millions de fans à travers le monde.  
 Les développeurs d'applications et de dashboards ont besoin d'une API centralisée pour accéder facilement aux données des saisons, des pilotes, des résultats, etc.  
@@ -32,7 +32,7 @@ Ce projet est orienté backend uniquement (pas d’interface front-end).
 
 ---
 
-## 📌 Besoins
+##  Besoins
 
 - Accès rapide aux données Formule 1.  
 - Intégration future possible avec un front React, Angular, etc.  
@@ -41,7 +41,7 @@ Ce projet est orienté backend uniquement (pas d’interface front-end).
 
 ---
 
-## 👤 UHL – Utilisateur Haut Niveau
+##  UHL – Utilisateur Haut Niveau
 
 | Utilisateur     | Besoin |
 |------------------|--------|
@@ -51,7 +51,7 @@ Ce projet est orienté backend uniquement (pas d’interface front-end).
 
 ---
 
-## 🛠 Explication des fonctionnalités
+##  Explication des fonctionnalités
 
 | Fonctionnalité       | Description |
 |----------------------|-------------|
@@ -63,7 +63,7 @@ Ce projet est orienté backend uniquement (pas d’interface front-end).
 
 ---
 
-## 🌐 API Endpoints (exemples)
+##  API Endpoints (exemples)
 
 | Méthode HTTP | Endpoint           | Description                         |
 |--------------|--------------------|-------------------------------------|
@@ -75,7 +75,7 @@ Ce projet est orienté backend uniquement (pas d’interface front-end).
 
 ---
 
-## ♻️ Stratégie environnementale
+##  Stratégie environnementale
 
 - Développement local avec **NestJS CLI**.  
 - Déploiement possible avec **Docker**.  
@@ -84,7 +84,7 @@ Ce projet est orienté backend uniquement (pas d’interface front-end).
 
 ---
 
-## ⚙️ Architecture technique
+##  Architecture technique
 
 | Composant         | Technologie                |
 |-------------------|----------------------------|
@@ -97,7 +97,7 @@ Ce projet est orienté backend uniquement (pas d’interface front-end).
 
 ---
 
-## 🧱 Détails des technologies
+##  Détails des technologies
 
 **NestJS**  
 Framework modulaire basé sur Node.js et TypeScript, idéal pour construire des API testables et bien structurées.
@@ -119,7 +119,7 @@ Permet de générer une documentation interactive et testable des endpoints de l
 
 ---
 
-## 🔁 Matrice de décision
+##  Matrice de décision
 
 *()*
 
@@ -131,17 +131,17 @@ Permet de générer une documentation interactive et testable des endpoints de l
 
 ---
 
-## 🔗 Lien du site
+##  Lien du site
 
 - **GitHub →** *(https://github.com/Arnaudb78/devops-project.git) *
 
 ---
 
-## 📌 Conclusion & Améliorations futures
+##  Conclusion & Améliorations futures
 
 Ce projet offre une base solide pour construire une API moderne dédiée à la Formule 1.
 
-### 🔮 Améliorations possibles :
+###  Améliorations possibles :
 - Authentification (JWT, OAuth).  
 - Cache (ex: Redis).  
 - WebSockets pour données en temps réel.  
