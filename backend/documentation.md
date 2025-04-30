@@ -1,19 +1,19 @@
  # Documentation Technique – App Formule 1
 
- **05.05.2025**  
- **M1 TL**  
- Arnaud Beaulieu, Elena Ferreira, Manal Suliman Ahmed
+**05.05.2025**  
+**M1 TL**  
+Arnaud Beaulieu, Elena Ferreira, Manal Suliman Ahmed
 
 ---
 
-##  Description du projet
+## Description du projet
 
 Ce projet consiste à développer une API REST (sans interface front-end) pour fournir des données liées au championnat de Formule 1 : pilotes, écuries, circuits, courses, résultats, etc.  
 Cette application représente une API backend RESTful dédiée à l’univers de la Formule 1. Elle permet de gérer et consulter les données des pilotes, circuits, équipes, et courses.
 
 ---
 
-##  Explication des fonctionnalités
+## Explication des fonctionnalités
 
 | Fonctionnalité       | Description |
 |----------------------|-------------|
@@ -25,7 +25,7 @@ Cette application représente une API backend RESTful dédiée à l’univers de
 
 ---
 
-##  Stratégie environnementale
+## Stratégie environnementale
 
 - Développement local avec **NestJS CLI**.  
 - Déploiement possible avec **Docker**.  
@@ -34,7 +34,7 @@ Cette application représente une API backend RESTful dédiée à l’univers de
 
 ---
 
-##  Architecture technique
+## Architecture technique
 
 | Composant         | Technologie                |
 |-------------------|----------------------------|
@@ -46,7 +46,7 @@ Cette application représente une API backend RESTful dédiée à l’univers de
 
 ---
 
-##  Détails des technologies
+## Détails des technologies
 
 **NestJS**  
 Framework modulaire basé sur Node.js et TypeScript, idéal pour construire des API testables et bien structurées.
@@ -65,32 +65,55 @@ Framework de test intégré avec NestJS.
 
 ---
 
-##  Matrice de décision
+## Matrices décisionnelles
 
-| Critères              | Poids | NestJS (TypeScript) | Express.js (Node) | Django (Python) | Spring Boot (Java) |
-|-----------------------|-------|---------------------|-------------------|-----------------|-------------------|
-| Compétences de l'équipe| 5     | 25                  | 20                | 20              | 20                |
-| Performance           | 4     | 16                  | 12                | 16              | 16                |
-| Popularité            | 5     | 25                  | 20                | 20              | 20                |
-| Stabilité             | 3     | 15                  | 12                | 15              | 15                |
-| Poids                 | 2     | 10                  | 8                 | 8               | 8                 |
-| Déploiement           | 3     | 15                  | 12                | 12              | 12                |
-| **Total pondéré**     |       | **106**             | **88**            | **91**          | **91**            |
+### 🔹 1. Comparaison des langages
+
+| Critères              | Poids | TypeScript | JavaScript | Python |
+|-----------------------|-------|------------|------------|--------|
+| Typage statique       | 5     | 25         | 5          | 10     |
+| Courbe d’apprentissage| 4     | 12         | 16         | 16     |
+| Écosystème            | 5     | 20         | 25         | 15     |
+| Performance           | 3     | 12         | 12         | 9      |
+| Sécurité              | 3     | 15         | 6          | 12     |
+| **Total pondéré**     |       | **84**     | **64**     | **62** |
 
 ---
+
+### 🔹 2. Comparaison des frameworks backend (Node.js)
+
+| Critères              | Poids | NestJS | Express | Fastify |
+|-----------------------|-------|--------|---------|---------|
+| Structure & modularité| 5     | 25     | 10      | 15      |
+| Performance           | 4     | 16     | 12      | 16      |
+| Documentation         | 3     | 15     | 12      | 9       |
+| Communauté            | 3     | 15     | 15      | 9       |
+| Courbe d’apprentissage| 2     | 8      | 10      | 8       |
+| **Total pondéré**     |       | **79** | **59**  | **57**  |
+
+---
+
+### 🔹 3. Comparaison des bases de données
+
+| Critères              | Poids | PostgreSQL | MySQL | MongoDB |
+|-----------------------|-------|------------|-------|---------|
+| Modélisation relationnelle | 5 | 25         | 20    | 5       |
+| Sécurité              | 4     | 16         | 12    | 12      |
+| Requêtage avancé      | 3     | 15         | 12    | 9       |
+| Support ORM (Prisma)  | 3     | 15         | 12    | 9       |
+| Scalabilité           | 2     | 6          | 6     | 8       |
+| **Total pondéré**     |       | **77**     | **62**| **43**  |
+
+---
+
+## Remarques
+
+- Aucun frontend n’est prévu. Le backend joue le rôle d'API REST.
+- Swagger n’est pas utilisé dans ce projet.
+- Les endpoints de l’API ne sont pas encore finalisés.
+
 
 ##  Lien du site
 
-**Aucun lien à fournir car il n'y a pas de front-end dans ce projet.**
+**https://github.com/Arnaudb78/devops-project.git.**
 
----
-
-##  Conclusion & Améliorations futures
-
-La documentation sera mise à jour à mesure que les fonctionnalités et les routes API seront définies.  
-Les améliorations possibles incluent :
-- Authentification (JWT, OAuth).  
-- Cache (ex: Redis).  
-- WebSockets pour données en temps réel.  
-- Connexion avec API publique F1 (Ergast, etc).  
-- Interface d’administration (back-office).
