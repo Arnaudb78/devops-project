@@ -96,11 +96,12 @@ pnpm run test:cov
 
 ## ⚙️ Workflows GitHub Actions
 
-| Workflow            | Fichier          | Description                                                                 |
-| ------------------- | ---------------- | --------------------------------------------------------------------------- |
-| **Tests unitaires** | `test.yml`       | Exécute `pnpm run test` à chaque push ou PR                                 |
-| **Couverture**      | `coverage.yml`   | Exécute `pnpm run test:cov` et téléverse le rapport de couverture           |
-| **Message PR**      | `pr-congrat.yml` | Envoie un message de félicitations automatique lors de l'ouverture d'une PR |
+| Workflow             | Fichier              | Description                                                       |
+| -------------------- | -------------------- | ----------------------------------------------------------------- |
+| **Tests unitaires**  | `test.yml`           | Exécute `pnpm run test` à chaque push ou PR                       |
+| **Couverture**       | `coverage.yml`       | Exécute `pnpm run test:cov` et téléverse le rapport de couverture |
+| **Badge couverture** | `badge-coverage.yml` | Génère un badge de couverture automatique et échoue si < 70 %     |
+| **Message PR**       | `pr-congrat.yml`     | Envoie un message automatique lors de l’ouverture d’une PR        |
 
 ## 🔗 Liens utiles
 
