@@ -1,7 +1,17 @@
 #!/bin/sh
-echo "DATABASE_URL=postgresql://postgres:postgres@postgres:5432/nestjs_db?schema=public" > .env
-echo "Running Prisma migrations..."
-npx prisma migrate deploy
-echo "Generating Prisma client..."
-npx prisma generate
+set -e
+
+# Wait for database to be ready
+echo "Waiting for database to be ready..."
+sleep 5
+
+# Run database migrations if DATABASE_URL is available
+if [ -n "$DATABASE_URL" ]; then
+  echo "Running database migrations..."
+  npx prisma migrate deploy
+else
+  echo "Warning: DATABASE_URL not set, skipping migrations"
+fi
+
+# Execute the passed command
 exec "$@"   
