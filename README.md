@@ -34,37 +34,43 @@ Ce projet vise à fournir un back-end structuré pour gérer des données liées
 git clone https://github.com/Arnaudb78/devops-project.git
 ```
 
-### 2. Installer pnpm (optionnel)
+### 2. Rentrer dans le projet
+
+```bash
+cd devops-project
+```
+
+### 3. Installer pnpm (optionnel)
 
 ```bash
 npm install -g pnpm@latest-10
 ```
 
-### 3. Copier les variables d'environnement
+### 4. Copier les variables d'environnement
 
 ```bash
 cd backend && cp .env.example .env
 ```
 
-### 4. Lancer Docker Desktop
+### 5. Lancer Docker Desktop
 
 Si vous ne disposez pas de Docker Desktop vous pouvez le télécharger ici 👇
 
 https://www.docker.com/products/docker-desktop/
 
-### 5. Lancer l'application
+### 6. Lancer l'application
 
 ```bash
 cd .. && docker compose up -build
 ```
 
-### 6. Arrêter les services
+### 7. Arrêter les services
 
 ```bash
 ctrl + C
 ```
 
-### 7. Supprimer les containers Docker
+### 8. Supprimer les containers Docker
 
 ```bash
 docker compose down
