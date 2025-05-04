@@ -40,32 +40,31 @@ git clone https://github.com/Arnaudb78/devops-project.git
 npm install -g pnpm@latest-10
 ```
 
-### 3. Installer les dépendances et générer Prisma
-
-### 3. Installer les dépendances et générer Prisma
+### 3. Copier les variables d'environnement
 
 ```bash
-cd backend/
-pnpm install
-pnpm prisma generate
+cd backend && cp .env.example .env
 ```
 
-### 4. Copier les variables d'environnement
+### 4. Lancer Docker Desktop
 
-```bash
-cp .env.example .env
-```
+Si vous ne disposez pas de Docker Desktop vous pouvez le télécharger ici 👇
+
+https://www.docker.com/products/docker-desktop/
 
 ### 5. Lancer l'application
 
-Revenir à la racine du projet, puis lancer tous les services avec Docker Compose :
-
 ```bash
-cd ..
-docker compose up --build
+cd .. && docker compose up -build
 ```
 
 ### 6. Arrêter les services
+
+```bash
+ctrl + C
+```
+
+### 7. Supprimer les containers Docker
 
 ```bash
 docker compose down
@@ -91,6 +90,11 @@ curl http://localhost:3000/drivers
 
 ```bash
 pnpm run test
+```
+
+### Générer un coverage
+
+```bash
 pnpm run test:cov
 ```
 
